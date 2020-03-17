@@ -16,6 +16,13 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
+    let i = 0
+    while (i < 100000) {
+      i++;
+    }
+    return Promise.resolve();
+  } else {
   event.respondWith(caches.match(event.request).then(function(response) {
     // caches.match() always resolves
     // but in case of success response will have value
@@ -37,4 +44,5 @@ self.addEventListener('fetch', function(event) {
       });
     }
   }));
+  }
 });
