@@ -19,7 +19,7 @@ self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
     setTimeout(() => {
       return Promise.resolve();
-    }, 2000);
+    }, 80);
   } else {
   event.respondWith(caches.match(event.request).then(function(response) {
     // caches.match() always resolves
