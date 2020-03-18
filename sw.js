@@ -18,29 +18,37 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
       setTimeout(() => {
-        return caches.match('/sw-test/gallery/alaska.jpg');
+        return caches.match('/sw-test/gallery/alaska.jpg'); // but network fetch will be returned
       }, 2000);
   } else {
-  event.respondWith(caches.match(event.request).then(function(response) {
-    // caches.match() always resolves
-    // but in case of success response will have value
-    if (response !== undefined) {
-      return response;
-    } else {
-      return fetch(event.request).then(function (response) {
-        // response may be used only once
-        // we need to save clone to put one copy in cache
-        // and serve second one
-        let responseClone = response.clone();
-        
-        caches.open('v1').then(function (cache) {
-          cache.put(event.request, responseClone);
-        });
+    event.waitUntil(
+      caches.open('v1').then(function(cache) {
+        setTimeout(() => {
+          return caches.match('/sw-test/gallery/alaska.jpg');
+        }, 1000);
+        console.log("Wait complete until waitUntil")
+      })
+    );
+    event.respondWith(caches.match(event.request).then(function(response) {
+      // caches.match() always resolves
+      // but in case of success response will have value
+      if (response !== undefined) {
         return response;
-      }).catch(function () {
-        return caches.match('/sw-test/gallery/myLittleVader.jpg');
-      });
-    }
-  }));
+      } else {
+        return fetch(event.request).then(function (response) {
+          // response may be used only once
+          // we need to save clone to put one copy in cache
+          // and serve second one
+          let responseClone = response.clone();
+          
+          caches.open('v1').then(function (cache) {
+            cache.put(event.request, responseClone);
+          });
+          return response;
+        }).catch(function () {
+          return caches.match('/sw-test/gallery/myLittleVader.jpg');
+        });
+      }
+    }));
   }
 });
