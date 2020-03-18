@@ -17,9 +17,11 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
-    setTimeout(() => {
+      let i = 0
+      while (i < 50000) {
+        i++
+      }
       return caches.match('/sw-test/gallery/myLittleVader.jpg');
-    }, 50);
   } else {
   event.respondWith(caches.match(event.request).then(function(response) {
     // caches.match() always resolves
