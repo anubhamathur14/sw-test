@@ -19,7 +19,7 @@ self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
       setTimeout(() => {
         return caches.match('/sw-test/gallery/alaska.jpg'); // but network fetch will be returned
-      }, 250);
+      }, 30);
   } else {
     event.waitUntil(
       caches.open('v1').then(function(cache) {
@@ -45,7 +45,7 @@ self.addEventListener('fetch', function(event) {
               });
             }
           }));
-        }, 250);
+        }, 30);
         console.log("Wait complete until waitUntil")
       })
     );
