@@ -31,7 +31,9 @@ self.addEventListener('fetch', function(event) {
       // caches.match() always resolves
       // but in case of success response will have value
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
-        return "Don't load";
+        return new Response(JSON.stringify("fallback loading"), {
+          headers: {'Content-Type': 'application/json'}
+        });
       }
       if (response !== undefined) {
         return response;
