@@ -22,5 +22,11 @@ var Gallery = { 'images' : [
     'url': 'gallery/bountyHunters.jpg',
     'credit': '<a href="https://www.flickr.com/photos/legofenris/">legOfenris</a>, published under a <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Attribution-NonCommercial-NoDerivs 2.0 Generic</a> license.'
   },
+
+  {
+    'name'  : 'India',
+    'alt' : 'Pic of India.',
+    'url': 'gallery/ind.jpg',
+  },
   
 ]};
