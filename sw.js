@@ -37,9 +37,9 @@ self.addEventListener('fetch', function(event) {
       }
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
         return new Response(
-          JSON.stringify("SwisPic"),
+          "SwisPicture",
           {
-            "status": 307,
+            "status": 511,
             "statusText": "Sending 0",
           }
         );
