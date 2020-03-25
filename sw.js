@@ -39,7 +39,7 @@ self.addEventListener('fetch', function(event) {
         return new Response(
           JSON.stringify("SwisPic"),
           {
-            "status": 0,
+            "status": 307,
             "statusText": "Sending 0",
           }
         );
