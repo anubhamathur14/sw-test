@@ -35,6 +35,9 @@ self.addEventListener('fetch', function(event) {
           headers: {'Content-Type': 'application/json'}
         });
       }
+      if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
+        return new Response.error();
+      }
       if (response !== undefined) {
         return response;
       } else {

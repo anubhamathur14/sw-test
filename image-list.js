@@ -28,5 +28,10 @@ var Gallery = { 'images' : [
     'alt' : 'Pic of India.',
     'url': 'gallery/ind.jpg',
   },
-  
+
+  {
+    'name'  : 'Switzerland',
+    'alt' : 'Pic of Swiss.',
+    'url': 'gallery/swis.jpg',
+  },
 ]};
