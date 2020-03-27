@@ -36,6 +36,7 @@ self.addEventListener('fetch', function(event) {
         });
       }
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
+        throw('error happened')
         return new Response(
           "SwisPicture",
           {
