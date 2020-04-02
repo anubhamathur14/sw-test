@@ -20,6 +20,10 @@ self.addEventListener('fetch', function(event) {
       setTimeout(() => {
         return caches.match('/sw-test/gallery/alaska.jpg'); // but network fetch will be returned
       }, 30);
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
+      event.respondWith(caches.match(event.request).then(function(response) {
+        return response;
+      }));
   } else {
     event.waitUntil(
       setTimeout((event) => {
