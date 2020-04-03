@@ -25,24 +25,24 @@ self.addEventListener('fetch', function(event) {
         return response;
       }));
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
-    // event.waitUntil(
-    //   setTimeout((event) => {
-    //     console.log("Wait complete until waitUntil");
-    //     return Promise.resolve();
-    //   }, 500)
-    // );
+    event.waitUntil(
+      setTimeout((event) => {
+        console.log("Wait complete until waitUntil");
+        return Promise.resolve();
+      }, 500)
+    );
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
         headers: {'Content-Type': 'application/json'}
       });
     })); 
   } else {
-    // event.waitUntil(
-    //   setTimeout((event) => {
-    //     console.log("Wait complete until waitUntil");
-    //     return Promise.resolve();
-    //   }, 30)
-    // );
+    event.waitUntil(
+      setTimeout((event) => {
+        console.log("Wait complete until waitUntil");
+        return Promise.resolve();
+      }, 30)
+    );
     event.respondWith(caches.match(event.request).then(function(response) {
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
         throw('error happened')
