@@ -18,7 +18,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
       return caches.match('/sw-test/gallery/alaska.jpg');
-  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") { // fetch and cache
     event.respondWith(
       caches.match(event.request).then((resp) => {
         return fetch(event.request).then((response) => {
@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(event) {
     event.waitUntil(
       caches.open('v1').then(() => {
         const i = 0
-        while (i < 1000000) {
+        while (i < 1000) {
           console.log("Wait complete until waitUntil");
           i++;
         }
