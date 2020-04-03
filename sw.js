@@ -17,7 +17,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
 
-  async function timeConsumingFunction() {
+  function timeConsumingFunction() {
     return caches.open('v1').then(() => {
       return caches.open('v1').then(() => {
         return caches.open('v1').then(() => {
@@ -57,12 +57,9 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
-        let i = 0
-        while (i < 10000) {
-          console.log("Wait complete until waitUntil");
-          i++;
-        }
-        return Promise.resolve();
+        return timeConsumingFunction.then(() => {
+          console.log("time consuming function ran")
+        })
       })
     );
     event.respondWith(
