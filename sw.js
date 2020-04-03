@@ -24,6 +24,18 @@ self.addEventListener('fetch', function(event) {
       event.respondWith(caches.match(event.request).then(function(response) {
         return response;
       }));
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
+    event.waitUntil(
+      setTimeout((event) => {
+        console.log("Wait complete until waitUntil");
+        return Promise.resolve();
+      }, 500)
+    );
+    event.respondWith(caches.match(event.request).then(function(response) {
+      return new Response(JSON.stringify("fallback loading"), {
+        headers: {'Content-Type': 'application/json'}
+      });
+    })); 
   } else {
     event.waitUntil(
       setTimeout((event) => {
@@ -32,13 +44,6 @@ self.addEventListener('fetch', function(event) {
       }, 30)
     );
     event.respondWith(caches.match(event.request).then(function(response) {
-      // caches.match() always resolves
-      // but in case of success response will have value
-      if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
-        return new Response(JSON.stringify("fallback loading"), {
-          headers: {'Content-Type': 'application/json'}
-        });
-      }
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
         throw('error happened')
         return new Response(
