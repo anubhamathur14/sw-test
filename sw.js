@@ -45,21 +45,13 @@ self.addEventListener('fetch', function(event) {
     })); 
   } else {
     event.waitUntil(
-      setTimeout((event) => {
+      caches.match(event.request).then((resp) => {
         console.log("Wait complete until waitUntil");
-        return Promise.resolve();
-      }, 30)
+      })
     );
     event.respondWith(caches.match(event.request).then(function(response) {
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
-        throw('error happened')
-        return new Response(
-          "SwisPicture",
-          {
-            "status": 511,
-            "statusText": "Sending 0",
-          }
-        );
+        throw('error happened');
       }
       if (response !== undefined) {
         return response;
