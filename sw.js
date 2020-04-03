@@ -18,9 +18,31 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
       setTimeout(() => {
-        return caches.match('/sw-test/gallery/alaska.jpg'); // but network fetch will be returned
+        // but network fetch should be returned
+        return caches.match('/sw-test/gallery/alaska.jpg');
       }, 30);
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
+    event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp || fetch(event.request).then((response) => {
+          return caches.open('v1').then((cache) => {
+            cache.put(event.request, response.clone());
+            return response;
+          });  
+        });
+      })
+    );
+  }  else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
+    event.waitUntil(
+      caches.open('v1').then(() => {
+        const i = 0
+        while (i < 1000000) {
+          console.log("Wait complete until waitUntil");
+          i++;
+        }
+        return Promise.resolve();
+      })
+    );
     event.respondWith(
       caches.match(event.request).then((resp) => {
         return resp || fetch(event.request).then((response) => {
