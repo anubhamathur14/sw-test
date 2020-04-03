@@ -32,8 +32,8 @@ self.addEventListener('fetch', function(event) {
   }  else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
-        const i = 0
-        while (i < 1000) {
+        let i = 0
+        while (i < 10000) {
           console.log("Wait complete until waitUntil");
           i++;
         }
