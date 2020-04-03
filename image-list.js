@@ -38,6 +38,6 @@ var Gallery = { 'images' : [
   {
     'name': 'Rome',
     'alt': 'Pic of Rome',
-    'url': 'https://lonelyplanetimages.imgix.net/mastheads/stock-photo-roman-sunset-77415821.jpg?sharp=10&vib=20&w=1200'
+    'url': 'gallery/rome.jpg'
   }
 ]};

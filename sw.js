@@ -16,6 +16,26 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+
+  async function timeConsumingFunction() {
+    return caches.open('v1').then(() => {
+      return caches.open('v1').then(() => {
+        return caches.open('v1').then(() => {
+          return caches.open('v1').then(() => {
+            return caches.open('v1').then(() => {
+              return caches.open('v1').then(() => {
+                return caches.open('v1').then(() => {
+                  return caches.open('v1').then(() => {        
+                  })
+                })
+              })
+            })
+          })
+        })
+      })
+    })
+  }
+
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
       return caches.match('/sw-test/gallery/alaska.jpg');
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") { // fetch and cache
@@ -29,7 +49,12 @@ self.addEventListener('fetch', function(event) {
         });
       })
     );
-  }  else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/rome.jpg") {
+    // fetch and don't cache
+    return fetch(event.request).then((response) => {
+      return response.clone();
+    })
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
         let i = 0
@@ -46,12 +71,6 @@ self.addEventListener('fetch', function(event) {
       })
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
-    // event.waitUntil(
-    //   setTimeout((event) => {
-    //     console.log("Wait complete until waitUntil");
-    //     return Promise.resolve();
-    //   }, 500)
-    // );
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
         headers: {'Content-Type': 'application/json'}
