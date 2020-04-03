@@ -17,10 +17,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
-      setTimeout(() => {
-        // but network fetch should be returned
-        return caches.match('/sw-test/gallery/alaska.jpg');
-      }, 30);
+      return caches.match('/sw-test/gallery/alaska.jpg');
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
     event.respondWith(
       caches.match(event.request).then((resp) => {
@@ -49,12 +46,12 @@ self.addEventListener('fetch', function(event) {
       })
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
-    event.waitUntil(
-      setTimeout((event) => {
-        console.log("Wait complete until waitUntil");
-        return Promise.resolve();
-      }, 500)
-    );
+    // event.waitUntil(
+    //   setTimeout((event) => {
+    //     console.log("Wait complete until waitUntil");
+    //     return Promise.resolve();
+    //   }, 500)
+    // );
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
         headers: {'Content-Type': 'application/json'}
