@@ -67,15 +67,24 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/rome.jpg") {
     // fetch and don't cache
     event.respondWith(
-      fetch(event.request).then((response) => {
-        return response.clone();
+      caches.match(event.request).then((resp) => {
+        return fetch(event.request).then((response) => {
+          return caches.open('v1').then((cache) => {
+            // cache.put(event.request, response.clone());
+            return response;
+          });  
+        });
       })
     )
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
         return timeConsumingFunction().then(() => {
-          console.log("time consuming function ran")
+          return timeConsumingFunction().then(() => {
+            return timeConsumingFunction().then(() => {
+              console.log("time consuming function ran")
+            })
+          })
         })
       })
     );
@@ -104,9 +113,6 @@ self.addEventListener('fetch', function(event) {
         return response;
       } else {
         return fetch(event.request).then(function (response) {
-          // response may be used only once
-          // we need to save clone to put one copy in cache
-          // and serve second one
           let responseClone = response.clone();
           
           caches.open('v1').then(function (cache) {
