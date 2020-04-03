@@ -64,7 +64,7 @@ self.addEventListener('fetch', function(event) {
         });
       })
     );
-  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/rome.jpg") {
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
     // fetch and don't cache
     event.respondWith(
       caches.match(event.request).then((resp) => {
