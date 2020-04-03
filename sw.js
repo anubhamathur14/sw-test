@@ -25,7 +25,22 @@ self.addEventListener('fetch', function(event) {
             return caches.open('v1').then(() => {
               return caches.open('v1').then(() => {
                 return caches.open('v1').then(() => {
-                  return caches.open('v1').then(() => {        
+                  return caches.open('v1').then(() => {     
+                    return fetch(event.request).then(() => {
+                      return fetch(event.request).then(() => {
+                        return fetch(event.request).then(() => {
+                          return fetch(event.request).then(() => {
+                            return fetch(event.request).then(() => {
+                              return fetch(event.request).then(() => {
+                                return fetch(event.request).then(() => {
+                      
+                                }) 
+                              })
+                            })
+                          })
+                        }) 
+                      })
+                    })  
                   })
                 })
               })
@@ -51,9 +66,11 @@ self.addEventListener('fetch', function(event) {
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/rome.jpg") {
     // fetch and don't cache
-    return fetch(event.request).then((response) => {
-      return response.clone();
-    })
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        return response.clone();
+      })
+    )
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
