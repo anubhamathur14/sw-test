@@ -24,7 +24,7 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
     event.respondWith(
       caches.match(event.request).then((resp) => {
-        return resp || fetch(event.request).then((response) => {
+        return fetch(event.request).then((response) => {
           return caches.open('v1').then((cache) => {
             cache.put(event.request, response.clone());
             return response;
@@ -45,12 +45,7 @@ self.addEventListener('fetch', function(event) {
     );
     event.respondWith(
       caches.match(event.request).then((resp) => {
-        return resp || fetch(event.request).then((response) => {
-          return caches.open('v1').then((cache) => {
-            cache.put(event.request, response.clone());
-            return response;
-          });  
-        });
+        return resp;
       })
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
