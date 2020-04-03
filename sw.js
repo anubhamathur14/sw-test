@@ -26,21 +26,7 @@ self.addEventListener('fetch', function(event) {
               return caches.open('v1').then(() => {
                 return caches.open('v1').then(() => {
                   return caches.open('v1').then(() => {     
-                    return fetch(event.request).then(() => {
-                      return fetch(event.request).then(() => {
-                        return fetch(event.request).then(() => {
-                          return fetch(event.request).then(() => {
-                            return fetch(event.request).then(() => {
-                              return fetch(event.request).then(() => {
-                                return fetch(event.request).then(() => {
-                      
-                                }) 
-                              })
-                            })
-                          })
-                        }) 
-                      })
-                    })  
+                    
                   })
                 })
               })
