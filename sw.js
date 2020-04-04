@@ -69,6 +69,11 @@ self.addEventListener('fetch', function(event) {
           return timeConsumingFunction().then(() => {
             return timeConsumingFunction().then(() => {
               console.log("time consuming function ran")
+              let i = 0
+              while (i < 100000) {
+                i++;
+              }
+              return Promise.resolve();
             })
           })
         })
