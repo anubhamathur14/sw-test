@@ -11,7 +11,8 @@ self.addEventListener('install', function(event) {
         '/sw-test/gallery/bountyHunters.jpg',
         '/sw-test/gallery/snowTroopers.jpg',
         '/sw-test/gallery/img_1.jpg',
-        '/sw-test/gallery/img_2.jpg'
+        '/sw-test/gallery/img_2.jpg',
+        '/sw-test/gallery/text1.js'
       ]);
     })
   );
@@ -57,6 +58,24 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
       caches.match(event.request).then((resp) => {
         return fetch(event.request).then((response) => {
+          return caches.open('v1').then((cache) => {
+            // cache.put(event.request, response.clone());
+            return response;
+          });  
+        });
+      })
+    )
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/text1.js") {
+    event.waitUntil(
+      caches.match(event.request).then((resp) => {
+        setTimeout(() => {
+          return Promise.resolve()
+        }, 35)
+      })
+    )
+    event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp || fetch(event.request).then((response) => {
           return caches.open('v1').then((cache) => {
             // cache.put(event.request, response.clone());
             return response;
