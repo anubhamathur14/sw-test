@@ -91,11 +91,11 @@ self.addEventListener('fetch', function(event) {
       });
     })); 
   } else {
-    event.waitUntil(
-      caches.match(event.request).then((resp) => {
-        console.log("Wait complete until waitUntil");
-      })
-    );
+    // event.waitUntil(
+    //   caches.match(event.request).then((resp) => {
+    //     console.log("Wait complete until waitUntil");
+    //   })
+    // );
     event.respondWith(caches.match(event.request).then(function(response) {
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
         throw('error happened');
