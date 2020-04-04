@@ -9,7 +9,9 @@ self.addEventListener('install', function(event) {
         '/sw-test/image-list.js',
         '/sw-test/star-wars-logo.jpg',
         '/sw-test/gallery/bountyHunters.jpg',
-        '/sw-test/gallery/snowTroopers.jpg'
+        '/sw-test/gallery/snowTroopers.jpg',
+        '/sw-test/gallery/img_1.jpg',
+        '/sw-test/gallery/img_2.jpg'
       ]);
     })
   );
@@ -84,6 +86,34 @@ self.addEventListener('fetch', function(event) {
         return resp;
       })
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_1.jpg") {
+    event.waitUntil(
+      caches.open('v1').then(() => {
+        return timeConsumingFunction().then(() => {
+          return timeConsumingFunction().then(() => {
+            return timeConsumingFunction().then(() => {
+              console.log("time consuming function ran")
+              let i = 0
+              while (i < 100000) {
+                i++;
+              }
+              return Promise.resolve();
+            })
+          })
+        })
+      })
+    );
+    event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp;
+      })
+    );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_2.jpg") {
+    event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp;
+      })
+    );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
@@ -91,11 +121,11 @@ self.addEventListener('fetch', function(event) {
       });
     })); 
   } else {
-    // event.waitUntil(
-    //   caches.match(event.request).then((resp) => {
-    //     console.log("Wait complete until waitUntil");
-    //   })
-    // );
+    event.waitUntil(
+      caches.match(event.request).then((resp) => {
+        console.log("Wait complete until waitUntil");
+      })
+    );
     event.respondWith(caches.match(event.request).then(function(response) {
       if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
         throw('error happened');

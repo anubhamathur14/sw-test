@@ -1,13 +1,6 @@
 var Path = 'gallery/';
 
 var Gallery = { 'images' : [
-      
-  {
-    'name'  : 'Darth Vader',
-    'alt' : 'A Black Clad warrior lego toy',
-    'url': 'gallery/myLittleVader.jpg',
-    'credit': '<a href="https://www.flickr.com/photos/legofenris/">legOfenris</a>, published under a <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Attribution-NonCommercial-NoDerivs 2.0 Generic</a> license.'
-  },
 
   {
     'name'  : 'Snow Troopers',
@@ -39,5 +32,24 @@ var Gallery = { 'images' : [
     'name': 'Rome',
     'alt': 'Pic of Rome',
     'url': 'gallery/rome.jpg'
-  }
+  },
+
+  {
+    'name': 'Image 1',
+    'alt': 'Pic of Rome',
+    'url': 'gallery/img_1.jpg'
+  },
+
+  {
+    'name': 'Image 2',
+    'alt': 'Pic of Rome',
+    'url': 'gallery/img_2.jpg'
+  },
+
+  {
+    'name'  : 'Darth Vader',
+    'alt' : 'A Black Clad warrior lego toy',
+    'url': 'gallery/myLittleVader.jpg',
+    'credit': '<a href="https://www.flickr.com/photos/legofenris/">legOfenris</a>, published under a <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Attribution-NonCommercial-NoDerivs 2.0 Generic</a> license.'
+  },
 ]};
