@@ -49,13 +49,13 @@ var Gallery = { 'images' : [
   {
     'name': 'Error response',
     'alt': 'Pic of Rome',
-    'url': 'gallery/img_error_1.jpg'
+    'url': 'gallery/img_error_3.jpg'
   },
 
   {
     'name': 'Error response',
     'alt': 'Pic of Rome',
-    'url': 'gallery/img_error_2.jpg'
+    'url': 'gallery/img_error_4.jpg'
   },
 
   {
