@@ -55,16 +55,14 @@ self.addEventListener('fetch', function(event) {
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_3.jpg") {
     event.respondWith(() => {
-      return {
+      return Promise.resolve({
         id: 1,
         str: "error string"
-      }
+      })
     })
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_4.jpg") {
     event.respondWith(
-      caches.match(event.request).then((resp) => {
-        return Promise.resolve(Response.error());
-      })
+      () => Promise.resolve(Response.error())
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
     // fetch and don't cache
