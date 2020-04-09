@@ -53,6 +53,19 @@ self.addEventListener('fetch', function(event) {
         });
       })
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_1.jpg") { // fetch and cache
+    event.respondWith(() => {
+      return {
+        id: 1,
+        str: "error string"
+      }
+    })
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_2.jpg") { // fetch and cache
+    event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return Response.error()
+      })
+    );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
     // fetch and don't cache
     event.respondWith(
