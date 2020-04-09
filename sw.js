@@ -63,7 +63,7 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_4.jpg") {
     event.respondWith(
       caches.match(event.request).then((resp) => {
-        return Response.error()
+        return Promise.resolve(Response.error());
       })
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
