@@ -59,6 +59,12 @@ var Gallery = { 'images' : [
   },
 
   {
+    'name': 'Error response',
+    'alt': 'Pic of Rome',
+    'url': 'gallery/alaska_2.jpg'
+  },
+
+  {
     'name'  : 'Darth Vader',
     'alt' : 'A Black Clad warrior lego toy',
     'url': 'gallery/myLittleVader.jpg',
