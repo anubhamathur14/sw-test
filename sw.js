@@ -143,6 +143,12 @@ self.addEventListener('fetch', function(event) {
         return resp;
       })
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/alaska_2.jpg") {
+    // event.respondWith(
+    //   caches.match(event.request).then((resp) => {
+    //     return resp;
+    //   })
+    // );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
