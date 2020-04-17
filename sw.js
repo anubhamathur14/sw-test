@@ -25,29 +25,26 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-
-  function timeConsumingFunction() {
-    return caches.open('v1').then(() => {
-      return caches.open('v1').then(() => {
-        return caches.open('v1').then(() => {
-        })
+  if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") {
+    event.waitUntil(
+      caches.match(event.request).then((resp) => {
+        console.log("Wait complete until waitUntil");
       })
-    })
-  }
-
-  if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
-      return caches.match('/sw-test/gallery/alaska.jpg');
-  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/ind.jpg") { // fetch and cache
-    event.respondWith(
+    );
+    event.respondWith( // fetch and cache
       caches.match(event.request).then((resp) => {
         return fetch(event.request).then((response) => {
           return caches.open('v1').then((cache) => {
             cache.put(event.request, response.clone());
             return response;
           });  
+        }).catch(function () {
+          return caches.match('/sw-test/gallery/myLittleVader.jpg');
         });
       })
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/snowTroopers.jpg") {
+      return caches.match('/sw-test/gallery/alaska.jpg');
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_3.jpg") {
     event.respondWith(Promise.resolve({
         id: 1,
@@ -89,9 +86,9 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/star-wars-logo.jpg") {
     event.waitUntil(
       caches.open('v1').then(() => {
-        return timeConsumingFunction().then(() => {
-          return timeConsumingFunction().then(() => {
-            return timeConsumingFunction().then(() => {
+        return caches.open('v1').then(() => {
+          return caches.open('v1').then(() => {
+            return caches.open('v1').then(() => {
               console.log("time consuming function ran")
               let i = 0
               while (i < 100000) {
