@@ -122,11 +122,7 @@ self.addEventListener('fetch', function(event) {
     event.waitUntil(
       caches.match(event.request).then((resp) => {
         return timeConsumingFunction().then(() => {
-          return timeConsumingFunction().then(() => {
-            return timeConsumingFunction().then(() => {
-              return resp;
-            })
-          })
+          return resp;
         })
       })
     );
