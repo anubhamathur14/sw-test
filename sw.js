@@ -8,6 +8,12 @@ self.addEventListener('install', function(event) {
         '/sw-test/app.js',
         '/sw-test/image-list.js',
         '/sw-test/star-wars-logo.jpg',
+      ]);
+    })
+  );
+  event.waitUntil(
+    caches.open('v2').then(function(cache) {
+      return cache.addAll([
         '/sw-test/gallery/bountyHunters.jpg',
         '/sw-test/gallery/snowTroopers.jpg',
         '/sw-test/gallery/img_1.jpg',
@@ -28,8 +34,7 @@ self.addEventListener('fetch', function(event) {
             return caches.open('v1').then(() => {
               return caches.open('v1').then(() => {
                 return caches.open('v1').then(() => {
-                  return caches.open('v1').then(() => {     
-                    
+                  return caches.open('v1').then(() => {
                   })
                 })
               })
@@ -64,7 +69,6 @@ self.addEventListener('fetch', function(event) {
       Promise.resolve(Response.error())
     );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
-    // fetch and don't cache
     event.respondWith(
       caches.match(event.request).then((resp) => {
         return fetch(event.request).then((response) => {
@@ -87,7 +91,6 @@ self.addEventListener('fetch', function(event) {
       caches.match(event.request).then((resp) => {
         return resp || fetch(event.request).then((response) => {
           return caches.open('v1').then((cache) => {
-            // cache.put(event.request, response.clone());
             return response;
           });  
         });
@@ -150,6 +153,8 @@ self.addEventListener('fetch', function(event) {
         console.log("Wait complete until waitUntil");
       })
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
+    throw('error happened');
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/myLittleVader.jpg") {
     event.respondWith(caches.match(event.request).then(function(response) {
       return new Response(JSON.stringify("fallback loading"), {
@@ -163,9 +168,6 @@ self.addEventListener('fetch', function(event) {
       })
     );
     event.respondWith(caches.match(event.request).then(function(response) {
-      if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/swis.jpg") {
-        throw('error happened');
-      }
       if (response !== undefined) {
         return response;
       } else {
