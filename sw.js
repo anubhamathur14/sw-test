@@ -55,6 +55,10 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
       Promise.resolve(Response.error())
     );
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_6.jpg") {
+    event.respondWith(
+      throw('error - thrown from inside respondWith');
+    );
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
     event.respondWith(
       caches.match(event.request).then((resp) => {

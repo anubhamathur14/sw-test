@@ -61,6 +61,12 @@ var Gallery = { 'images' : [
   {
     'name': 'Error response',
     'alt': 'Pic of Rome',
+    'url': 'gallery/img_error_6.jpg'
+  },
+
+  {
+    'name': 'Error response',
+    'alt': 'Pic of Rome',
     'url': 'gallery/alaska_2.jpg'
   },
 
