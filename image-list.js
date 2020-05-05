@@ -78,7 +78,7 @@ var Gallery = { 'images' : [
 
   {
     'name': 'CORS request',
-    'alt': 'Pic of ',
+    'alt': 'Pic of Bird',
     'url': 'https://www.thoughtco.com/thmb/evEdR3jWgfDaOx6iYXGb4LaEELE=/3888x2592/filters:no_upscale():max_bytes(150000):strip_icc()/weaver-bird-nest-56e6c0323df78c5ba0575798.jpg'
   },
 
