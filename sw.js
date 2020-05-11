@@ -118,9 +118,9 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_2.jpg") {
     event.waitUntil(
       caches.match(event.request).then((resp) => {
-        return caches.open('v1').then((cache) => {
-          return caches.open('v2').then((cache) => {
-            return resp;
+        return caches.open('v2').then((cache) => {
+          return caches.open('v1').then((cache) => {
+            return Promise.resolve();
           })
         })
       })
