@@ -63,7 +63,7 @@ self.addEventListener('fetch', function(event) {
       throw "error";
     }));    
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_5.jpg") {
-    event.respondWith(fetch(url).then(() => {
+    event.respondWith(fetch(event.request).then(() => {
       throw "error";
     }));      
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
@@ -120,8 +120,8 @@ self.addEventListener('fetch', function(event) {
       caches.match(event.request).then((resp) => {
         return caches.open('v2').then((cache) => {
           return caches.open('v1').then((cache) => {
-            return fetch(url).then((cache) => {
-              return fetch(url).then((cache) => {
+            return fetch(event.request).then((cache) => {
+              return fetch(event.request).then((cache) => {
                 return Promise.resolve();
               })
             })
