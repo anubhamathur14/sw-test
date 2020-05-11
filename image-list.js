@@ -57,7 +57,11 @@ var Gallery = { 'images' : [
     'alt': 'Pic of Rome',
     'url': 'gallery/img_error_4.jpg'
   },
-
+  {
+    'name': 'Error response',
+    'alt': 'Pic of Rome',
+    'url': 'gallery/img_error_5.jpg'    
+  },
   {
     'name': 'Error response',
     'alt': 'Pic of Rome',
@@ -75,12 +79,11 @@ var Gallery = { 'images' : [
     'alt': 'Pic of Rome',
     'url': 'gallery/alaska_3.jpg'
   },
-
-  // {
-  //   'name': 'CORS request',
-  //   'alt': 'Pic of Bird',
-  //   'url': 'https://www.thoughtco.com/thmb/evEdR3jWgfDaOx6iYXGb4LaEELE=/3888x2592/filters:no_upscale():max_bytes(150000):strip_icc()/weaver-bird-nest-56e6c0323df78c5ba0575798.jpg'
-  // },
+  {
+    'name': 'CORS request',
+    'alt': 'Pic of Bird',
+    'url': 'https://www.thoughtco.com/thmb/evEdR3jWgfDaOx6iYXGb4LaEELE=/3888x2592/filters:no_upscale():max_bytes(150000):strip_icc()/weaver-bird-nest-56e6c0323df78c5ba0575798.jpg'
+  },
 
   {
     'name'  : 'Darth Vader',

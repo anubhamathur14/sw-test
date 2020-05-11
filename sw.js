@@ -58,13 +58,19 @@ self.addEventListener('fetch', function(event) {
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_6.jpg") {
     // event.respondWith(
     //   throw('error - thrown from inside respondWith');
-    // );
+    // ); ---> this causes service worker registration to fail
+    event.respondWith(new Promise((resolve) => {
+      throw "error";
+    }));    
+  } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/img_error_5.jpg") {
+    event.respondWith(fetch(url).then(() => {
+      throw "error";
+    }));      
   } else if (event.request.url === "https://anubhamathur14.github.io/sw-test/gallery/rome.jpg") {
     event.respondWith(
       caches.match(event.request).then((resp) => {
         return fetch(event.request).then((response) => {
           return caches.open('v1').then((cache) => {
-            // cache.put(event.request, response.clone());
             return response;
           });  
         });
