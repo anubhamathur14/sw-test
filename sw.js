@@ -120,8 +120,8 @@ self.addEventListener('fetch', function(event) {
       caches.match(event.request).then((resp) => {
         return caches.open('v2').then((cache) => {
           return caches.open('v1').then((cache) => {
-            return caches.open('v2').then((cache) => {
-              return caches.open('v1').then((cache) => {
+            return fetch(url).then((cache) => {
+              return fetch(url).then((cache) => {
                 return Promise.resolve();
               })
             })
